@@ -14,7 +14,7 @@ export default {
         },
        secondary: {
           Mirage: '#17192b',
-          EbonyClay: '#17192b', 
+          EbonyClay: '#242b37', 
           ShuttleGray: '#AAB8C2',
         },
       },
