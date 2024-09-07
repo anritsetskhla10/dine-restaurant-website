@@ -1,4 +1,4 @@
-import Logo from '../assets/logo-dine.png'
+import Logo from '/assets/logo-dine.png'
 
 function Footer() {
   return (

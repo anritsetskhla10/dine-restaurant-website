@@ -18,6 +18,9 @@ export default {
           ShuttleGray: '#AAB8C2',
         },
       },
+      backgroundImage: {
+        'firstImg': "url('/assets/bookingFirst.jpg')",
+      },
     },
   },
   plugins: [],
