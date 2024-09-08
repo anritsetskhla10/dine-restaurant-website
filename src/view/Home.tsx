@@ -1,8 +1,13 @@
-import Logo from '/assets/logo-dine.png'
+import Logo from '/assets/logo-dine.png';
 import BGFirst from '/assets/first.png';
-import Button from '../components/Button'
-import Footer from '../components/Footer'
-import Slider from '../components/Slider'
+import SecondImg from '/assets/second.png';
+import ThirdImg from '/assets/third.png';
+import FourthImg from '/assets/fourth.png';
+import Fifthmg from '/assets/fifth.png';
+import SixthImg from '/assets/sixthth.png';
+import Button from '../components/Button';
+import Footer from '../components/Footer';
+import Slider from '../components/Slider';
 
 
 function Home() {
@@ -21,16 +26,15 @@ function Home() {
           <img src={BGFirst} alt="bg image" className=' h-full absolute right-0 top-0 z-0'/>
       </div>
 
-      <div>
-        <img src="" alt="" />
-        <div>
-        <div className='flex items-center gap-2'>
+      <div className='flex justify-between items-center mt-[-70px] px-[165px] relative top-30'>
+        <img src={SecondImg} alt="second image"  />
+        <div className='flex flex-col gap-8'>
+          <div className='flex items-center gap-2'>
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3>Enjoyable place
-          for all the family</h3>
-          <p>Our relaxed surroundings make dining with us a great experience for everyone. We can even arrange a tour of the farm before your meal.</p>
+          <h3 className='w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>Enjoyable place for all the family</h3>
+          <p className='w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>Our relaxed surroundings make dining with us a great experience for everyone. We can even arrange a tour of the farm before your meal.</p>
         </div>
       </div>
 
@@ -40,10 +44,10 @@ function Home() {
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3>The most locally sourced food</h3>
-          <p>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
+          <h3 className='w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
+          <p className='w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
         </div>
-        <img src="" alt="" />
+        <img src={ThirdImg} alt="third img" />
       </div>
 
       <div>
@@ -52,12 +56,12 @@ function Home() {
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3>The most locally sourced food</h3>
-          <p>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
+          <h3 className='w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
+          <p className='w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
           </div>
           <div>
             <div className='border-b'>
-              <img src="" alt="" />
+              <img src={FourthImg} alt="fourth img" />
               <div>
                 <h5>Seared Salmon Fillet</h5>
                 <p>Our locally sourced salmon served with a refreshing buckwheat summer salad.</p>

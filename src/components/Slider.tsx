@@ -1,4 +1,8 @@
+import SlideOne from '/assets/seventh.png';
+import SlideTwo from '/assets/slide2.png';
+import SlideThree from '/assets/slide3.png';
 import Button from "./Button"
+
 
 function Slider() {
   return (
