@@ -4,7 +4,7 @@ import SecondImg from '/assets/second.png';
 import ThirdImg from '/assets/third.png';
 import FourthImg from '/assets/fourth.png';
 import Fifthmg from '/assets/fifth.png';
-import SixthImg from '/assets/sixthth.png';
+import SixthImg from '/assets/sixth.png';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
@@ -26,7 +26,7 @@ function Home() {
           <img src={BGFirst} alt="bg image" className=' h-full absolute right-0 top-0 z-0'/>
       </div>
 
-      <div className='flex justify-between items-center mt-[-70px] px-[165px] relative top-30'>
+      <div className='flex justify-between items-center mt-[-70px] px-[165px] relative z-30'>
         <img src={SecondImg} alt="second image"  />
         <div className='flex flex-col gap-8'>
           <div className='flex items-center gap-2'>
@@ -38,7 +38,7 @@ function Home() {
         </div>
       </div>
 
-      <div>
+      <div className='flex justify-between items-center mt-8 mb-[-70px] px-[165px] relative z-30'>
         <div>
         <div className='flex items-center gap-2'>
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
@@ -50,35 +50,35 @@ function Home() {
         <img src={ThirdImg} alt="third img" />
       </div>
 
-      <div>
-          <div>
+      <div className='flex justify-between  pt-[200px] pb-[128px] px-[165px] bg-primary-CodGray'>
+          <div className='flex flex-col gap-8'>
         <div className='flex items-center gap-2'>
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3 className='w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
-          <p className='w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
+          <h3 className='w-[445px] text-[48px] font-bold text-[#ffffff] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
+          <p className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
           </div>
-          <div>
-            <div className='border-b'>
-              <img src={FourthImg} alt="fourth img" />
+          <div className='flex flex-col gap-6'>
+            <div className='border-b flex items-center gap-14 max-w-[540px]'>
+              <img src={FourthImg} alt="fourth img" className='mb-6' />
               <div>
-                <h5>Seared Salmon Fillet</h5>
-                <p>Our locally sourced salmon served with a refreshing buckwheat summer salad.</p>
+                <h5 className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.2] '>Seared Salmon Fillet</h5>
+                <p className='w-[445px] text-[16px] font-normal  text-[#ffffff] leading-[-0.25px] '>Our locally sourced salmon served with a refreshing buckwheat summer salad.</p>
               </div>  
             </div>
-            <div className='border-b'>
-              <img src="" alt="" />
+            <div className='border-b flex items-center gap-14 max-w-[540px]'>
+              <img src={Fifthmg} alt="fifth image" className='mb-6' />
               <div>
-                <h5>Rosemary Filet Mignon</h5>
-                <p>Our prime beef served to your taste with a delicious choice of seasonal sides.</p>
+                <h5 className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.2] '>Rosemary Filet Mignon</h5>
+                <p className='w-[445px] text-[16px] font-normal  text-[#ffffff] leading-[-0.25px] '>Our prime beef served to your taste with a delicious choice of seasonal sides.</p>
               </div>  
             </div>
-            <div className='border-b'>
-              <img src="" alt="" />
+            <div className='border-b flex items-center gap-14 max-w-[540px]'>
+              <img src={SixthImg} alt="sixth image" className='mb-6'/>
               <div>
-                <h5>Summer Fruit Chocolate Mousse</h5>
-                <p>Creamy mousse combined with summer fruits and dark chocolate shavings.</p>
+                <h5 className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.2] '>Summer Fruit Chocolate Mousse</h5>
+                <p className='w-[445px] text-[16px] font-normal  text-[#ffffff] leading-[-0.25px] '>Creamy mousse combined with summer fruits and dark chocolate shavings.</p>
               </div>  
             </div>
           </div>
