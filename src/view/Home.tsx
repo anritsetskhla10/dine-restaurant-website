@@ -8,9 +8,14 @@ import SixthImg from '/assets/sixth.png';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
-
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleBookingClick = () => {
+    navigate('/booking'); 
+  };
 
   return (
     <div>
@@ -21,7 +26,7 @@ function Home() {
           since 1989
           </h1>
           <p className='max-w-[445px] text-[20px] font-normal mb-6 text-[#ffffff] leading-[1.5] z-20'>Experience our seasonal menu in beautiful country surroundings. Eat the freshest produce from the comfort of our farmhouse.</p>
-          <Button dark={true}>BOOK A TABLE</Button>
+          <Button dark={true} onClick={handleBookingClick}>BOOK A TABLE</Button>
         </div>
           <img src={BGFirst} alt="bg image" className=' h-full absolute right-0 top-0 z-0'/>
       </div>
@@ -84,10 +89,10 @@ function Home() {
           </div>
       </div>
 
-      <Slider/>
+      <Slider handleBookingClick={handleBookingClick} />
       <div className='flex justify-between px-[165px] pt-[99px] pb-[93px] bg-footerImg bg-center bg-cover'>
         <h2 className='text-[48px] font-bold  text-[#ffffff] leading-[1] tracking-[-0.5px]'>Ready to make a reservation?</h2>
-        <Button dark={true}>BOOK A TABLE</Button>
+        <Button dark={true} onClick={handleBookingClick}>BOOK A TABLE</Button>
       </div>
       <Footer/>
     </div>

@@ -20,6 +20,7 @@ export default {
       },
       backgroundImage: {
         'footerImg': "url('/assets/footer.jpg')",
+        'BookingImg': "url(/assets/bookingFirst.jpg)",
       },
     },
   },
