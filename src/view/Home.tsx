@@ -15,12 +15,12 @@ function Home() {
   return (
     <div>
       <div className='bg-[#111111] pt-16 pl-[165px] pb-[248px] relative'>
-        <img src={Logo} alt="logo" className='w-[104px] h-10 ' />
+        <img src={Logo} alt="logo" className='w-[104px] h-10 relative z-50' />
         <div className='mt-[100px] relative z-20'>
-          <h1 className='w-[507px] text-[80px] font-thin mb-4 text-[#ffffff] leading-[1] tracking-[-1px] z-20'>Exquisite dining 
+          <h1 className='max-w-[507px] text-[80px] font-thin mb-4 text-[#ffffff] leading-[1] tracking-[-1px] z-20'>Exquisite dining 
           since 1989
           </h1>
-          <p className='w-[445px] text-[20px] font-normal mb-6 text-[#ffffff] leading-[1.5] z-20'>Experience our seasonal menu in beautiful country surroundings. Eat the freshest produce from the comfort of our farmhouse.</p>
+          <p className='max-w-[445px] text-[20px] font-normal mb-6 text-[#ffffff] leading-[1.5] z-20'>Experience our seasonal menu in beautiful country surroundings. Eat the freshest produce from the comfort of our farmhouse.</p>
           <Button dark={true}>BOOK A TABLE</Button>
         </div>
           <img src={BGFirst} alt="bg image" className=' h-full absolute right-0 top-0 z-0'/>
@@ -33,8 +33,8 @@ function Home() {
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3 className='w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>Enjoyable place for all the family</h3>
-          <p className='w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>Our relaxed surroundings make dining with us a great experience for everyone. We can even arrange a tour of the farm before your meal.</p>
+          <h3 className='max-w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>Enjoyable place for all the family</h3>
+          <p className='max-w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>Our relaxed surroundings make dining with us a great experience for everyone. We can even arrange a tour of the farm before your meal.</p>
         </div>
       </div>
 
@@ -42,10 +42,10 @@ function Home() {
         <div>
         <div className='flex items-center gap-2'>
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
-            <div className='w-14 h-[1px] bg-primary-Beaver'/>
+            <div className='max-w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3 className='w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
-          <p className='w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
+          <h3 className='max-w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
+          <p className='max-w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
         </div>
         <img src={ThirdImg} alt="third img" />
       </div>
@@ -56,38 +56,38 @@ function Home() {
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='w-14 h-[1px] bg-primary-Beaver'/>
           </div>
-          <h3 className='w-[445px] text-[48px] font-bold text-[#ffffff] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
-          <p className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
+          <h3 className='max-w-[445px] text-[48px] font-bold text-[#ffffff] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
+          <p className='max-w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
           </div>
           <div className='flex flex-col gap-6'>
             <div className='border-b flex items-center gap-14 max-w-[540px]'>
               <img src={FourthImg} alt="fourth img" className='mb-6' />
               <div>
-                <h5 className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.2] '>Seared Salmon Fillet</h5>
-                <p className='w-[445px] text-[16px] font-normal  text-[#ffffff] leading-[-0.25px] '>Our locally sourced salmon served with a refreshing buckwheat summer salad.</p>
+                <h5 className=' text-[20px] font-bold  text-[#ffffff] leading-[1.2] tracking-[-0.25px] '>Seared Salmon Fillet</h5>
+                <p className='text-[16px] font-normal  text-[#ffffff] leading-[1.63] '>Our locally sourced salmon served with a refreshing buckwheat summer salad.</p>
               </div>  
             </div>
             <div className='border-b flex items-center gap-14 max-w-[540px]'>
               <img src={Fifthmg} alt="fifth image" className='mb-6' />
               <div>
-                <h5 className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.2] '>Rosemary Filet Mignon</h5>
-                <p className='w-[445px] text-[16px] font-normal  text-[#ffffff] leading-[-0.25px] '>Our prime beef served to your taste with a delicious choice of seasonal sides.</p>
+                <h5 className='text-[20px] font-bold  text-[#ffffff] leading-[1.2] tracking-[-0.25px]'>Rosemary Filet Mignon</h5>
+                <p className='text-[16px] font-normal  text-[#ffffff] leading-[1.63] '>Our prime beef served to your taste with a delicious choice of seasonal sides.</p>
               </div>  
             </div>
             <div className='border-b flex items-center gap-14 max-w-[540px]'>
               <img src={SixthImg} alt="sixth image" className='mb-6'/>
               <div>
-                <h5 className='w-[445px] text-[20px] font-normal  text-[#ffffff] leading-[1.2] '>Summer Fruit Chocolate Mousse</h5>
-                <p className='w-[445px] text-[16px] font-normal  text-[#ffffff] leading-[-0.25px] '>Creamy mousse combined with summer fruits and dark chocolate shavings.</p>
+                <h5 className='text-[20px] font-bold  text-[#ffffff] leading-[1.2] tracking-[-0.25px]'>Summer Fruit Chocolate Mousse</h5>
+                <p className='text-[16px] font-normal  text-[#ffffff] leading-[1.63] '>Creamy mousse combined with summer fruits and dark chocolate shavings.</p>
               </div>  
             </div>
           </div>
       </div>
 
       <Slider/>
-      <div>
-        <h2>Ready to make a reservation?</h2>
-        <Button dark={false}>BOOK A TABLE</Button>
+      <div className='flex justify-between px-[165px] pt-[99px] pb-[93px] bg-footerImg bg-center bg-cover'>
+        <h2 className='text-[48px] font-bold  text-[#ffffff] leading-[1] tracking-[-0.5px]'>Ready to make a reservation?</h2>
+        <Button dark={true}>BOOK A TABLE</Button>
       </div>
       <Footer/>
     </div>
