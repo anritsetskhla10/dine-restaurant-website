@@ -18,12 +18,10 @@ const Form: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // EmailJS parameters
-    const serviceID = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
-    const templateID = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
-    const userID = 'YOUR_USER_ID'; // Replace with your EmailJS user ID
+    const serviceID = 'YOUR_SERVICE_ID'; 
+    const templateID = 'YOUR_TEMPLATE_ID'; 
+    const userID = 'YOUR_USER_ID'; 
 
-    // Send email with EmailJS
     emailjs
       .send(serviceID, templateID, formData, userID)
       .then((response) => {
@@ -35,7 +33,6 @@ const Form: React.FC = () => {
         console.error('FAILED...', error);
       });
 
-    // Clear form after submission
     setFormData({
       name: '',
       email: '',
@@ -51,24 +48,20 @@ const Form: React.FC = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Make a Reservation</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="form-group">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Full Name
-            </label>
+
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Enter your name"
+              placeholder="Name"
               value={formData.name}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
+              className="w-full px-[14px] py-[14px]  text-[20px] font-normal  text-[#111111] leading-[1.4] border-b-[1px]
+               border-b-[#8e8e8e]  focus:outline-none placeholder:opacity-50 focus:border-b-[#111]"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
             <input
               type="email"
               id="email"
