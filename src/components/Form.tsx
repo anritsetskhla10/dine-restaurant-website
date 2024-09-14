@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { Select } from 'antd';
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,10 @@ const Form: React.FC = () => {
     time: '',
     guests: 1,
   });
+
+  const handleChangeTime = (value: { value: string; label: React.ReactNode }) => {
+    console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -70,53 +75,47 @@ const Form: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-            />
+              className="w-full px-[14px] py-[14px]  text-[20px] font-normal  text-[#111111] leading-[1.4] border-b-[1px]
+              border-b-[#8e8e8e]  focus:outline-none placeholder:opacity-50 focus:border-b-[#111]"
+           />
           </div>
-          <div className="form-group">
+          <div className="flex justify-between">
             <label htmlFor="date" className="block text-sm font-medium text-gray-700">
               Pick a Date
             </label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-            />
+            <div className='flex gap-4'>
+              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
+              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
+              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
+            </div>
           </div>
-          <div className="form-group">
+          <div className="flex justify-between">
             <label htmlFor="time" className="block text-sm font-medium text-gray-700">
               Pick a Time
             </label>
-            <input
-              type="time"
-              id="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-            />
+            <div className='flex gap-4'>
+              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
+              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
+              <Select
+                  labelInValue
+                  defaultValue={{ value: 'AM', label: 'AM' }}
+                  style={{ width: 80 }}
+                  onChange={handleChangeTime}
+                  options={[
+                    {
+                      value: 'PM',
+                      label: 'PM',
+                    },
+                    {
+                      value: 'AM',
+                      label: 'AM',
+                    }
+                  ]}
+                />
+            </div>
           </div>
           <div className="form-group">
-            <label htmlFor="guests" className="block text-sm font-medium text-gray-700">
-              Number of People
-            </label>
-            <input
-              type="number"
-              id="guests"
-              name="guests"
-              min="1"
-              max="20"
-              placeholder="Number of guests"
-              value={formData.guests}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"
-            />
+            
           </div>
           <div className="form-group">
             <button
