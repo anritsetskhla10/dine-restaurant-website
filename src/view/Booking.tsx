@@ -12,7 +12,7 @@ function Booking() {
           We can’t wait to host you. If you have any special requirements please feel free to call on the phone number below. We’ll be happy to accommodate you.
         </p>
       </div>
-      <div>
+      <div className='relative'>
         <Form />
       </div>
       <Footer />

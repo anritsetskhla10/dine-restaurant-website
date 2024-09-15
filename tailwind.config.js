@@ -22,6 +22,9 @@ export default {
         'footerImg': "url('/assets/footer.jpg')",
         'BookingImg': "url(/assets/bookingFirst.jpg)",
       },
+      boxShadow: {
+        'shadow': '0 75px 100px -50px rgba(56, 66, 85, 0.5)', 
+      },
     },
   },
   plugins: [],
