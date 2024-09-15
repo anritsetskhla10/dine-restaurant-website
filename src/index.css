@@ -4,10 +4,48 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 
 :root {
   font-family: "League Spartan", sans-serif;
 
+}
+
+
+@layer components {
+  .reset-styles {
+    all: unset;
+  }
+}
+
+.ant-select-selector {
+  border: none !important;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: #8e8e8e 1px solid !important;
+}
+
+.ant-select-selection-item{
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  color: #111;
+}
+
+:where(.ant-select-single) .ant-select-selector {
+  border-radius: 0 !important; 
+  border: none !important;
+}
+
+.ant-select-single{
+  height: auto;
 }
 

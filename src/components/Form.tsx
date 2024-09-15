@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Select } from 'antd';
+import '../index.css'; 
 
 const Form: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const Form: React.FC = () => {
   });
 
   const handleChangeTime = (value: { value: string; label: React.ReactNode }) => {
-    console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
+    console.log(value);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,10 +51,8 @@ const Form: React.FC = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Make a Reservation</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="form-group">
-
             <input
               type="text"
               id="name"
@@ -79,48 +78,56 @@ const Form: React.FC = () => {
               border-b-[#8e8e8e]  focus:outline-none placeholder:opacity-50 focus:border-b-[#111]"
            />
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <label htmlFor="date" className="block text-sm font-medium text-gray-700">
               Pick a Date
             </label>
             <div className='flex gap-4'>
-              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
-              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
-              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
+              <input type="number"
+              placeholder='MM'
+               className='max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none'/>
+              <input 
+              placeholder='DD'
+              type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none'/>
+              <input type="number" 
+              placeholder='YYYY'
+              className='max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none'/>
             </div>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <label htmlFor="time" className="block text-sm font-medium text-gray-700">
               Pick a Time
             </label>
             <div className='flex gap-4'>
-              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
-              <input type="number" className='max-w-20 border-b-[1px] border-b-[#8e8e8e]'/>
-              <Select
-                  labelInValue
-                  defaultValue={{ value: 'AM', label: 'AM' }}
-                  style={{ width: 80 }}
-                  onChange={handleChangeTime}
-                  options={[
-                    {
-                      value: 'PM',
-                      label: 'PM',
-                    },
-                    {
-                      value: 'AM',
-                      label: 'AM',
-                    }
-                  ]}
-                />
+              <input type="number" 
+              placeholder='09'
+              className='max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none'/>
+              <input type="number" 
+              placeholder='00'
+              className='max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none'/>
+             <Select
+                labelInValue
+                defaultValue={{ value: 'AM', label: 'AM' }}
+                onChange={handleChangeTime}
+                options={[
+                  {
+                    value: 'PM',
+                    label: 'PM',
+                  },
+                  {
+                    value: 'AM',
+                    label: 'AM',
+                  }
+                ]}
+                className='ant-select-selector'
+              />
+
             </div>
-          </div>
-          <div className="form-group">
-            
           </div>
           <div className="form-group">
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              className="w-full bg-primary-CodGray text-white pt-5 pb-4  hover:bg-[#ffffff] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
               Make Reservation
             </button>
