@@ -49,8 +49,8 @@ const Form: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center  bg-gray-100 absolute top-[258px]">
-      <div className="bg-white p-8 shadow-shadow  w-full max-w-[540px]">
+    <div className="flex justify-center items-center  bg-gray-100 w-[540px]">
+      <div className="bg-white p-16 shadow-shadow w-full">
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
           <div className="form-group">
             <input
