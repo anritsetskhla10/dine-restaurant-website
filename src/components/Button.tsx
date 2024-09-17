@@ -15,7 +15,7 @@ const Button: FC<IBtn> = ({ children, disabled, dark, onClick }) => {
         ${
           dark
             ? 'border-[#ffffff] bg-transparent text-[#ffffff] hover:bg-[#ffffff] hover:text-secondary-Mirage'
-            : 'border-[#ffffff] text-[#ffffff] bg-[#111111] hover:bg-[#111111] hover:text-[#ffffff]'
+            : 'border-[#ffffff] text-[#ffffff] bg-[#111111] hover:bg-[#ffffff] hover:text-[#111111] hover:border-[#111111]'
         }
         dark:border-[#ffffff] dark:bg-secondary-Mirage dark:hover:bg-[#ffffff] dark:hover:text-secondary-Mirage`}
       disabled={disabled}

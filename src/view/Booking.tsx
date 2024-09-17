@@ -13,11 +13,11 @@ function Booking() {
         </p>
       </div>
       <div className='h-[320px] w-full bg-white'>
-          <div className='absolute top-[258px] right-[165px] z-30'>
+          <div className='absolute top-[258px] right-[165px] translate-x-[-20%] z-30'>
             <Form />
           </div>
           <div className='w-full h-full relative'>
-            <div className='w-full max-w-[160px] flex flex-col gap-2 absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-10'>
+            <div className='w-full max-w-[160px] flex flex-col gap-2 absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-90%] z-10'>
                 <hr className='h-[6px] w-full bg-primary-Beaver'/>
                 <hr className='h-[6px] w-full bg-primary-Beaver'/>
                 <hr className='h-[6px] w-full bg-primary-Beaver'/>
