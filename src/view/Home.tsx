@@ -19,7 +19,7 @@ function Home() {
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth <= 1220) {
+      if (windowWidth <= 1280) {
         setBgImage(BGFirstTablet);
       } else {
         setBgImage(BGFirst);
@@ -40,9 +40,10 @@ function Home() {
 
   return (
     <div>
-      <div className='bg-[#111111] pt-16 pl-[165px] pb-[248px] relative'>
-        <img src={Logo} alt="logo" className='w-[104px] h-10 relative z-50' />
-        <div className='mt-[100px] relative z-20'>
+      <div className='bg-[#111111] pt-16 pl-[165px] pb-[248px] relative  
+      max-xl:flex max-xl:flex-col max-xl:pl-0 max-xl:pt-0'>
+        <div className=' relative z-20 max-xl:order-2 max-xl:flex max-xl:flex-col max-xl:items-center'>
+        <img src={Logo} alt="logo" className='w-[104px] mb-20 h-10 relative z-50 ' />
           <h1 className='max-w-[507px] text-[80px] font-thin mb-4 text-[#ffffff] leading-[1] tracking-[-1px] z-20'>
             Exquisite dining since 1989
           </h1>
@@ -51,10 +52,11 @@ function Home() {
           </p>
           <Button dark={true} onClick={handleBookingClick}>BOOK A TABLE</Button>
         </div>
-        <img src={bgImage} alt="bg image" className='h-full absolute right-0 top-0 z-0  max-xl:w-full'/>
+        <img src={bgImage} alt="bg image" className='h-full absolute right-0 top-0 z-0 max-xl:relative  max-xl:w-full max-xl:order-1'/>
       </div>
 
-      <div className='flex justify-between items-center mt-[-70px] px-[165px] relative z-30'>
+      <div className='flex justify-between items-center mt-[-70px] px-[165px] relative z-30
+      max-xl:flex-col'>
         <img src={SecondImg} alt="second image"  />
         <div className='flex flex-col gap-8'>
           <div className='flex items-center gap-2'>
@@ -66,16 +68,16 @@ function Home() {
         </div>
       </div>
 
-      <div className='flex justify-between items-center mt-8 mb-[-70px] px-[165px] relative z-30'>
-        <div>
-        <div className='flex items-center gap-2'>
+      <div className='flex justify-between items-center mt-8 mb-[-70px] px-[165px] relative z-30 max-xl:flex-col'>
+        <div className='max-xl:order-2'>
+        <div className='flex items-center gap-2 '>
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
             <div className='max-w-14 h-[1px] bg-primary-Beaver'/>
           </div>
           <h3 className='max-w-[445px] text-[48px] font-bold text-[#111111] leading-[1] tracking-[-0.5px]'>The most locally sourced food</h3>
           <p className='max-w-[445px] text-[20px] font-normal  text-[#111111] leading-[1.5] '>All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food.</p>
         </div>
-        <img src={ThirdImg} alt="third img" />
+        <img src={ThirdImg} alt="third img" className='max-xl:order-1'/>
       </div>
 
       <div className='flex justify-between  pt-[200px] pb-[128px] px-[165px] bg-primary-CodGray'>
