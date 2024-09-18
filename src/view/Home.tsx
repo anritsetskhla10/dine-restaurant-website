@@ -1,5 +1,8 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from '/assets/logo-dine.png';
 import BGFirst from '/assets/first.png';
+import BGFirstTablet from '/assets/first-tablet.png';
 import SecondImg from '/assets/second.png';
 import ThirdImg from '/assets/third.png';
 import FourthImg from '/assets/fourth.png';
@@ -8,13 +11,31 @@ import SixthImg from '/assets/sixth.png';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
-import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
+  const [bgImage, setBgImage] = useState(BGFirst);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      if (windowWidth <= 1220) {
+        setBgImage(BGFirstTablet);
+      } else {
+        setBgImage(BGFirst);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleBookingClick = () => {
-    navigate('/booking'); 
+    navigate('/booking');
   };
 
   return (
@@ -22,13 +43,15 @@ function Home() {
       <div className='bg-[#111111] pt-16 pl-[165px] pb-[248px] relative'>
         <img src={Logo} alt="logo" className='w-[104px] h-10 relative z-50' />
         <div className='mt-[100px] relative z-20'>
-          <h1 className='max-w-[507px] text-[80px] font-thin mb-4 text-[#ffffff] leading-[1] tracking-[-1px] z-20'>Exquisite dining 
-          since 1989
+          <h1 className='max-w-[507px] text-[80px] font-thin mb-4 text-[#ffffff] leading-[1] tracking-[-1px] z-20'>
+            Exquisite dining since 1989
           </h1>
-          <p className='max-w-[445px] text-[20px] font-normal mb-6 text-[#ffffff] leading-[1.5] z-20'>Experience our seasonal menu in beautiful country surroundings. Eat the freshest produce from the comfort of our farmhouse.</p>
+          <p className='max-w-[445px] text-[20px] font-normal mb-6 text-[#ffffff] leading-[1.5] z-20'>
+            Experience our seasonal menu in beautiful country surroundings. Eat the freshest produce from the comfort of our farmhouse.
+          </p>
           <Button dark={true} onClick={handleBookingClick}>BOOK A TABLE</Button>
         </div>
-          <img src={BGFirst} alt="bg image" className=' h-full absolute right-0 top-0 z-0'/>
+        <img src={bgImage} alt="bg image" className='h-full absolute right-0 top-0 z-0  max-xl:w-full'/>
       </div>
 
       <div className='flex justify-between items-center mt-[-70px] px-[165px] relative z-30'>
@@ -88,7 +111,7 @@ function Home() {
             </div>
           </div>
       </div>
-
+      
       <Slider handleBookingClick={handleBookingClick} />
       <div className='flex justify-between px-[165px] pt-[99px] pb-[93px] bg-footerImg bg-center bg-cover'>
         <h2 className='text-[48px] font-bold  text-[#ffffff] leading-[1] tracking-[-0.5px]'>Ready to make a reservation?</h2>
@@ -96,7 +119,7 @@ function Home() {
       </div>
       <Footer/>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
