@@ -22,14 +22,14 @@ function Slider({handleBookingClick}:SliderProps) {
   };
 
   return (
-    <div className="py-[160px] px-[165px] flex justify-between items-center">
+    <div className="py-[160px] px-[165px] flex justify-between items-center max-xl:flex-col max-xl:px-0">
       <img
         src={slides[activeSlide].src}
         alt={slides[activeSlide].alt}
-        className="max-w-[540px]"
+        className="max-w-[540px] max-xl:max-w-[573px] "
       />
-      <div className="max-w-[445px]">
-        <div className="mb-20">
+      <div className="max-w-[445px] max-xl:max-w-[680px] max-xl:flex max-xl:flex-col">
+        <div className="mb-20 max-xl:order-2">
           <h3 className="max-w-[445px] text-[48px] font-bold mb-5 text-secondary-EbonyClay leading-[1] tracking-[-0.5px]">
             {slides[activeSlide].alt}
           </h3>
@@ -43,7 +43,7 @@ function Slider({handleBookingClick}:SliderProps) {
           <Button dark={false} onClick={handleBookingClick}>BOOK A TABLE</Button>
         </div>
 
-        <div className="flex flex-col items-start gap-3">
+        <div className="flex flex-col items-start gap-3 max-xl:order-1 max-xl:flex-row whitespace-nowrap  max-xl:gap-12">
           <button
             className={`text-[#4c4c4c] text-[17px] font-semibold leading-[1.65] tracking-[2.5px] ${
               activeSlide === 0 ? '' : 'opacity-50'
