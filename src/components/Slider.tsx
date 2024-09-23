@@ -1,37 +1,61 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SlideOne from '/assets/seventh.jpg';
 import SlideTwo from '/assets/slide2.png';
 import SlideThree from '/assets/slide3.png';
+import TabletSlideOne from '/assets/tablet-slideone.jpg';
+import TabletSlideTwo from '/assets/tablet-slide2.png';
+import TabletSlideThree from '/assets/tablet-slide3.png';
 import Button from "./Button";
 
-const slides = [
+const desktopSlides = [
   { src: SlideOne, alt: 'Family Gathering' },
   { src: SlideTwo, alt: 'Special Events' },
   { src: SlideThree, alt: 'Social Events' },
 ];
 
-interface SliderProps{
+const tabletSlides = [
+  { src: TabletSlideOne, alt: 'Family Gathering' },
+  { src: TabletSlideTwo, alt: 'Special Events' },
+  { src: TabletSlideThree, alt: 'Social Events' },
+];
+
+interface SliderProps {
   handleBookingClick: () => void;
 }
 
-function Slider({handleBookingClick}:SliderProps) {
+function Slider({ handleBookingClick }: SliderProps) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isTabletView, setIsTabletView] = useState(window.innerWidth < 1280);
 
-  const handleSlideChange = (index:number) => {
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTabletView(window.innerWidth < 1280);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const currentSlides = isTabletView ? tabletSlides : desktopSlides;
+
+  const handleSlideChange = (index: number) => {
     setActiveSlide(index);
   };
 
   return (
     <div className="py-[160px] px-[165px] flex justify-between items-center max-xl:flex-col max-xl:px-0">
       <img
-        src={slides[activeSlide].src}
-        alt={slides[activeSlide].alt}
+        src={currentSlides[activeSlide].src}
+        alt={currentSlides[activeSlide].alt}
         className="max-w-[540px] max-xl:max-w-[573px] "
       />
       <div className="max-w-[445px] max-xl:max-w-[680px] max-xl:flex max-xl:flex-col">
         <div className="mb-20 max-xl:order-2">
           <h3 className="max-w-[445px] text-[48px] font-bold mb-5 text-secondary-EbonyClay leading-[1] tracking-[-0.5px]">
-            {slides[activeSlide].alt}
+            {currentSlides[activeSlide].alt}
           </h3>
           <p className="max-w-[445px] text-[20px] font-normal mb-[60px] text-secondary-EbonyClay leading-[1.5]">
             {activeSlide === 0
@@ -43,7 +67,7 @@ function Slider({handleBookingClick}:SliderProps) {
           <Button dark={false} onClick={handleBookingClick}>BOOK A TABLE</Button>
         </div>
 
-        <div className="flex flex-col items-start gap-3 max-xl:order-1 max-xl:flex-row whitespace-nowrap  max-xl:gap-12">
+        <div className="flex flex-col items-start gap-3 max-xl:order-1 max-xl:flex-row whitespace-nowrap max-xl:gap-12">
           <button
             className={`text-[#4c4c4c] text-[17px] font-semibold leading-[1.65] tracking-[2.5px] ${
               activeSlide === 0 ? '' : 'opacity-50'

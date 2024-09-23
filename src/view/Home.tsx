@@ -5,9 +5,14 @@ import BGFirst from '/assets/first.png';
 import BGFirstTablet from '/assets/first-tablet.png';
 import SecondImg from '/assets/second.png';
 import ThirdImg from '/assets/third.png';
+import TabletSecondImg from '/assets/tablet-second.png';
+import TabletThirdImg from '/assets/tablet-third.png';
 import FourthImg from '/assets/fourth.png';
-import Fifthmg from '/assets/fifth.png';
+import FifthImg from '/assets/fifth.png';  
 import SixthImg from '/assets/sixth.png';
+import MobileFourthImg from '/assets/mobile-one.jpg';
+import MobileFifthImg from '/assets/mobile-two.jpg';  
+import MobileSixthImg from '/assets/mobile-three.jpg'; 
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import Slider from '../components/Slider';
@@ -15,19 +20,30 @@ import Slider from '../components/Slider';
 function Home() {
   const navigate = useNavigate();
   const [bgImage, setBgImage] = useState(BGFirst);
+  const [fourthImage, setFourthImage] = useState(FourthImg);
+  const [fifthImage, setFifthImage] = useState(FifthImg);
+  const [sixthImage, setSixthImage] = useState(SixthImg);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth <= 1280) {
-        setBgImage(BGFirstTablet);
+  
+      if (windowWidth <= 420) {
+        setFourthImage(MobileFourthImg);
+        setFifthImage(MobileFifthImg);
+        setSixthImage(MobileSixthImg);
+      } else if (windowWidth <= 1280) {  
+        setBgImage(BGFirstTablet);    
       } else {
+        setFourthImage(FourthImg);
+        setFifthImage(FifthImg);
+        setSixthImage(SixthImg);
         setBgImage(BGFirst);
       }
     };
-
+  
     handleResize();
-
+  
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -57,7 +73,7 @@ function Home() {
 
       <div className='flex justify-between items-center mt-[-70px] px-[165px] relative z-30
       max-xl:flex-col'>
-        <img src={SecondImg} alt="second image"  className='max-xl:mb-[60px]'/>
+        <img src={SecondImg} alt="second image" className='max-xl:mb-[60px]'/>
         <div className='flex flex-col gap-8 max-xl:items-center'>
           <div className='flex items-center gap-2'>
             <div className='w-2 h-2 rounded-[50%] border border-primary-Beaver'></div>
@@ -93,34 +109,29 @@ function Home() {
           </div>
           <div className='flex flex-col gap-6'>
             <div className='border-b flex items-center gap-14 max-w-[540px]'>
-              <img src={FourthImg} alt="fourth img" className='mb-6' />
+              <img src={fourthImage} alt="fourth img" className='mb-6' />
               <div className='max-xl:mb-6'>
                 <h5 className=' text-[20px] font-bold  text-[#ffffff] leading-[1.2] tracking-[-0.25px] '>Seared Salmon Fillet</h5>
                 <p className='text-[16px] font-normal  text-[#ffffff] leading-[1.63] '>Our locally sourced salmon served with a refreshing buckwheat summer salad.</p>
               </div>  
             </div>
             <div className='border-b flex items-center gap-14 max-w-[540px]'>
-              <img src={Fifthmg} alt="fifth image" className='mb-6' />
+              <img src={fifthImage} alt="fifth image" className='mb-6' />
               <div className='max-xl:mb-6'>
                 <h5 className='text-[20px] font-bold  text-[#ffffff] leading-[1.2] tracking-[-0.25px]'>Rosemary Filet Mignon</h5>
                 <p className='text-[16px] font-normal  text-[#ffffff] leading-[1.63] '>Our prime beef served to your taste with a delicious choice of seasonal sides.</p>
               </div>  
             </div>
-            <div className='border-b flex items-center gap-14 max-w-[540px]'>
-              <img src={SixthImg} alt="sixth image" className='mb-6'/>
-              <div className='max-xl:mb-6'>
+            <div className='flex items-center gap-14 max-w-[540px]'>
+              <img src={sixthImage} alt="sixth img" />
+              <div>
                 <h5 className='text-[20px] font-bold  text-[#ffffff] leading-[1.2] tracking-[-0.25px]'>Summer Fruit Chocolate Mousse</h5>
                 <p className='text-[16px] font-normal  text-[#ffffff] leading-[1.63] '>Creamy mousse combined with summer fruits and dark chocolate shavings.</p>
               </div>  
             </div>
           </div>
       </div>
-      
       <Slider handleBookingClick={handleBookingClick} />
-      <div className='flex justify-between px-[165px] pt-[99px] pb-[93px] bg-footerImg bg-center bg-cover'>
-        <h2 className='text-[48px] font-bold  text-[#ffffff] leading-[1] tracking-[-0.5px]'>Ready to make a reservation?</h2>
-        <Button dark={true} onClick={handleBookingClick}>BOOK A TABLE</Button>
-      </div>
       <Footer/>
     </div>
   );
