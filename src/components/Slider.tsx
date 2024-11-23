@@ -46,18 +46,20 @@ function Slider({ handleBookingClick }: SliderProps) {
   };
 
   return (
-    <div className="py-[160px] px-[165px] flex justify-between items-center max-xl:flex-col max-xl:px-0">
+    <div className="py-[160px] px-[165px] flex justify-between items-center max-[1340px]:flex-col max-[1340px]:px-0 max-[1340px]:gap-10">
       <img
         src={currentSlides[activeSlide].src}
         alt={currentSlides[activeSlide].alt}
-        className="max-w-[540px] max-xl:max-w-[573px] "
+        className="max-w-[540px] max-xl:max-w-[573px] max-sm:max-w-[326px]"
       />
-      <div className="max-w-[445px] max-xl:max-w-[680px] max-xl:flex max-xl:flex-col">
-        <div className="mb-20 max-xl:order-2">
-          <h3 className="max-w-[445px] text-[48px] font-bold mb-5 text-secondary-EbonyClay leading-[1] tracking-[-0.5px]">
+      <div className="max-w-[445px] max-xl:max-w-[680px] max-xl:flex max-xl:flex-col ">
+        <div className="mb-20 max-xl:order-2 max-[1340px]:flex max-[1340px]:flex-col max-[1340px]:text-center 
+        max-[1340px]:items-center ">
+          <h3 className="max-w-[445px] text-[48px] font-bold mb-5 text-secondary-EbonyClay leading-[1] tracking-[-0.5px]
+          max-sm:text-[32px]">
             {currentSlides[activeSlide].alt}
           </h3>
-          <p className="max-w-[445px] text-[20px] font-normal mb-[60px] text-secondary-EbonyClay leading-[1.5]">
+          <p className="max-w-[445px] text-[20px] font-normal mb-[60px] text-secondary-EbonyClay leading-[1.5] max-sm:text-[16px]">
             {activeSlide === 0
               ? "We love catering for entire families. So please bring everyone along for a special meal with your loved ones. We’ll provide a memorable experience for all."
               : activeSlide === 1
@@ -67,9 +69,10 @@ function Slider({ handleBookingClick }: SliderProps) {
           <Button dark={false} onClick={handleBookingClick}>BOOK A TABLE</Button>
         </div>
 
-        <div className="flex flex-col items-start gap-3 max-xl:order-1 max-xl:flex-row whitespace-nowrap max-xl:gap-12">
+        <div className="flex flex-col items-start gap-3 max-xl:order-1 max-xl:flex-row whitespace-nowrap max-xl:gap-12 max-[1340px]:mb-5 
+        max-[1340px]:items-center max-sm:flex-col max-sm:gap-4">
           <button
-            className={`text-[#4c4c4c] text-[17px] font-semibold leading-[1.65] tracking-[2.5px] ${
+            className={`text-[#4c4c4c] text-[17px] font-semibold leading-[1.65] tracking-[2.5px]  ${
               activeSlide === 0 ? '' : 'opacity-50'
             }`}
             onClick={() => handleSlideChange(0)}

@@ -10,7 +10,7 @@ interface IBtn {
 const Button: FC<IBtn> = ({ children, disabled, dark, onClick }) => {
   return (
     <button
-      className={`pt-[25px] pb-[23px] px-12 border text-[17px] font-semibold leading-[0.94] tracking-[2.5px] 
+      className={`pt-[25px] pb-[23px] px-12 border text-[17px] font-semibold leading-[0.94] tracking-[2.5px]  
         ${disabled ? 'opacity-25' : ''}
         ${
           dark

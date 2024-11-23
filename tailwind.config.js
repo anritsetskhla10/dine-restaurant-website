@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: { 
+        'xl1340': '1340px',
+      },
       colors: {
         primary: {
           Beaver: '#9e7f66', 
