@@ -5,8 +5,6 @@ import BGFirst from '/assets/first.png';
 import BGFirstTablet from '/assets/first-tablet.png';
 import SecondImg from '/assets/second.png';
 import ThirdImg from '/assets/third.png';
-import TabletSecondImg from '/assets/tablet-second.png';
-import TabletThirdImg from '/assets/tablet-third.png';
 import FourthImg from '/assets/fourth.png';
 import FifthImg from '/assets/fifth.png';  
 import SixthImg from '/assets/sixth.png';
@@ -32,7 +30,7 @@ function Home() {
         setFourthImage(MobileFourthImg);
         setFifthImage(MobileFifthImg);
         setSixthImage(MobileSixthImg);
-      } else if (windowWidth <= 1280) {  
+      } else if (windowWidth <= 1340) {  
         setBgImage(BGFirstTablet);    
       } else {
         setFourthImage(FourthImg);
