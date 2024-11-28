@@ -23,60 +23,117 @@ const Form: React.FC = () => {
     time: "",
   });
 
+  const [valueDate, setValueDate] = useState({
+    month: '',
+    day: '',
+    year: '',
+    hour: '',
+    minute: '',
+    period: '',
+  })
 
-  const validateDate = (month: string, day: string, year: string): boolean => {
-    const currentYear = new Date().getFullYear();
-    const validMonth = /^0[1-9]|1[0-2]$/.test(month);
-    const validDay = /^0[1-9]|[12][0-9]|3[01]$/.test(day); 
-    const validYear = /^\d{4}$/.test(year) && parseInt(year) >= currentYear;
+
+
+  const handleMonthChange = (month: string) => {
+    const paddedMonth = padWithZero(month);
+    const currentParts = formData.date.split("/");
+    const formattedDate = `${paddedMonth}/${currentParts[1] || valueDate.day}/${currentParts[2] || valueDate.year}`;
   
-    return validMonth && validDay && validYear;
+    setValueDate((prev) => ({ ...prev, month: paddedMonth }));
+    setFormData((prev) => ({ ...prev, date: formattedDate }));
   };
-
-  const handleDateChange = (month: string, day: string, year: string) => {
-    const [currentMonth = "", currentDay = "", currentYear = ""] = formData.date.split("/");
-
-    const formattedMonth = month || currentMonth;
-    const formattedDay = day || currentDay;
-    const formattedYear = year || currentYear;
-
-
+  
+  const handleDayChange = (day: string) => {
+    const paddedDay = padWithZero(day);
+    const currentParts = formData.date.split("/");
+    const formattedDate = `${currentParts[0] || valueDate.month}/${paddedDay}/${currentParts[2] || valueDate.year}`;
+  
+    setValueDate((prev) => ({ ...prev, day: paddedDay }));
+    setFormData((prev) => ({ ...prev, date: formattedDate }));
+  };
+  
+  const handleYearChange = (year: string) => {
+    setValueDate((prev) => ({ ...prev, year }));
+  
     setFormData((prev) => ({
       ...prev,
-      date: `${formattedMonth}/${formattedDay}/${formattedYear}`,
+      date: `${valueDate.month}/${valueDate.day}/${year || valueDate.year}`,
     }));
-    console.log(formData.date)
+  };
+
+  const padWithZero = (value: string): string => {
+    return value.padStart(2, "0");
+  };
+
+  const handleHourChange = (hour: string) => {
+    const formattedHour = padWithZero(hour);
+  
+    setValueDate((prev) => ({ ...prev, hour: formattedHour }));
+    setFormData((prev) => ({
+      ...prev,
+      time: `${formattedHour}:${valueDate.minute} ${valueDate.period}`,
+    }));
+  };
+  
+  const handleMinuteChange = (minute: string) => {
+    const formattedMinute = padWithZero(minute);
+  
+    setValueDate((prev) => ({ ...prev, minute: formattedMinute }));
+    setFormData((prev) => ({
+      ...prev,
+      time: `${valueDate.hour}:${formattedMinute} ${valueDate.period}`,
+    }));
+  };
+
+  const handlePeriodChange = (period: string) => {
+    setValueDate((prev) => ({ ...prev, period }));
+  
+    setFormData((prev) => ({
+      ...prev,
+      time: `${valueDate.hour}:${valueDate.minute} ${period || valueDate.period}`,
+    }));
   };
 
   const validateTime = (hour: string, minute: string, period: string): boolean => {
-    const validHour = /^0[1-9]|1[0-2]$/.test(hour); 
-    const validMinute = /^[0-5][0-9]$/.test(minute); 
+    const formattedHour = padWithZero(hour);
+    const formattedMinute = padWithZero(minute);
+  
+    const validHour = /^0[1-9]|1[0-2]$/.test(formattedHour); 
+    const validMinute = /^[0-5][0-9]$/.test(formattedMinute); 
     const validPeriod = period === "AM" || period === "PM"; 
+  
     return validHour && validMinute && validPeriod;
   };
 
-  const handleTimeChange = (hour: string, minute: string, period: string) => {
-    const [currentHour = "", currentMinute = "", currentPeriod = "AM"] = formData.time
-      ? formData.time.split(/[: ]/)
-      : ["", "","AM"];
+  const validateDate = (month: string, day: string, year: string): boolean => {
+    const currentYear = new Date().getFullYear();
+  
+    const padWithZero = (value: string): string => value.padStart(2, "0");
+    const formattedMonth = padWithZero(month);
+    const formattedDay = padWithZero(day);
+  
+    const validMonth = /^0[1-9]|1[0-2]$/.test(formattedMonth);
+    const validDay = /^[0-3][0-9]$/.test(formattedDay); 
+    const validYear = /^\d{4}$/.test(year) && parseInt(year) >= currentYear;
+  
+    if (!validMonth || !validDay || !validYear) return false;
 
-    const formattedHour = hour || currentHour;
-    const formattedMinute = minute || currentMinute;
-    const formattedPeriod = period || currentPeriod;
-
-
-    setFormData((prev) => ({
-      ...prev,
-      time: `${formattedHour}:${formattedMinute} ${formattedPeriod}`,
-    }));
-    
+    const date = new Date(`${year}-${formattedMonth}-${formattedDay}`);
+    return (
+      date.getFullYear() === parseInt(year) &&
+      date.getMonth() + 1 === parseInt(formattedMonth) && 
+      date.getDate() === parseInt(formattedDay)
+    );
   };
+
+
 
   const validateForm = (): boolean => {
     const [month = "", day = "", year = ""] = formData.date.split("/");
     const [hour = "", minute = "", period = "AM"] = formData.time.split(/[: ]/);
   
     console.log(formData.time.split(/[: ]/))
+    console.log(formData.date.split(/[: ]/))
 
     const newErrors = {
       name: formData.name ? "" : "Name is required.",
@@ -162,24 +219,24 @@ const Form: React.FC = () => {
             <InputMask
               placeholder="MM"
               mask="99"
-              value={formData.date.split("/")[0] || "MM"}
-              onChange={(e) => handleDateChange(e.target.value, "", "")}
+              value={valueDate.month}
+              onChange={(e) => handleMonthChange(e.target.value)}
               maskChar={null}
               className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
             />
             <InputMask
               placeholder="DD"
               mask="99"
-              value={formData.date.split("/")[1] || "DD"}
-              onChange={(e) => handleDateChange("", e.target.value, "")}
+              value={valueDate.day}
+              onChange={(e) => handleDayChange(e.target.value)}
               maskChar={null}
               className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
             />
             <InputMask
               placeholder="YYYY"
               mask="9999"
-              value={formData.date.split("/")[2] || "YYYY"}
-              onChange={(e) => handleDateChange("", "", e.target.value)}
+              value={valueDate.year}
+              onChange={(e) => handleYearChange( e.target.value)}
               maskChar={null}
               className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
             />
@@ -196,22 +253,22 @@ const Form: React.FC = () => {
             <InputMask
               placeholder="HH"
               mask="99"
-              value={formData.time.split(":")[0] || "HH"}
-              onChange={(e) => handleTimeChange(e.target.value, "", "")}
+              value={valueDate.hour}
+              onChange={(e) => handleHourChange(e.target.value)}
               maskChar={null}
               className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
             />
             <InputMask
               placeholder="MM"
               mask="99"
-              value={formData.time.split(":")[1] || "MM"}
-              onChange={(e) => handleTimeChange("", e.target.value, "")}
+              value={valueDate.minute}
+              onChange={(e) => handleMinuteChange(e.target.value)}
               maskChar={null}
               className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
             />
             <Select
               defaultValue="AM"
-              onChange={(value) => handleTimeChange("", "", value)}
+              onChange={(value) => handlePeriodChange(value)}
               options={[
                 { value: "AM", label: "AM" },
                 { value: "PM", label: "PM" },
