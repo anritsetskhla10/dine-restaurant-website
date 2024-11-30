@@ -15,8 +15,8 @@ function Booking() {
           We can’t wait to host you. If you have any special requirements please feel free to call on the phone number below. We’ll be happy to accommodate you.
         </p>
       </div>
-      <div className='h-[320px] w-full bg-white relative flex items-center justify-center 
-      max-xl1340:h-[500px] max-xl1340:flex'>
+      <div className='h-[450px] w-full bg-white relative flex items-center justify-center 
+      max-xl1340:h-[580px] max-xl1340:flex max-sm:h-[640px]' >
           <div className='absolute top-[-358px] right-[165px] translate-x-[-8%] z-30 
           max-xl1340:top-[-80px] max-xl1340:translate-x-[50%] max-xl1340:right-[50%]'>
             <Form />

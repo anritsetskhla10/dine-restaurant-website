@@ -180,9 +180,9 @@ const Form: React.FC = () => {
 
 
   return (
-    <div className="flex justify-center items-center bg-gray-100 w-[540px]">
-      <div className="bg-white p-16 shadow-shadow w-full">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+    <div className="flex justify-center items-center bg-gray-100 w-[540px] max-sm:w-[327px] max-sm:border-2">
+      <div className="bg-white p-16 shadow-shadow w-full max-sm:p-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8 max-sm:gap-4" noValidate>
           {/* Name Field */}
           <div className="form-group flex flex-col gap-3">
           <input
@@ -192,7 +192,6 @@ const Form: React.FC = () => {
             placeholder="Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            required
             className={`w-full px-[14px] py-[14px] text-[20px] font-normal leading-[1.4] border-b-[1px] ${
               errors.name ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111111]'
             } focus:outline-none placeholder:opacity-50 focus:border-b-[#111]`}
@@ -209,7 +208,6 @@ const Form: React.FC = () => {
             placeholder="Enter your email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            required
             className={`w-full px-[14px] py-[14px] text-[20px] font-normal leading-[1.4] border-b-[1px] ${
               errors.email ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111111]'
             } focus:outline-none placeholder:opacity-50 focus:border-b-[#111]`}
@@ -218,7 +216,7 @@ const Form: React.FC = () => {
           </div>
 
           {/* Date Picker */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center max-sm:flex-col max-sm:gap-4 max-sm:items-start">
             <div className='flex flex-col gap-2'>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700">
               Pick a Date
@@ -262,7 +260,7 @@ const Form: React.FC = () => {
           </div>
 
           {/* Time Picker */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center max-sm:flex-col max-sm:gap-4 max-sm:items-start">
             <div className='flex flex-col gap-2'>
               <label htmlFor="time" className="block text-sm font-medium text-gray-700">
                 Pick a Time
