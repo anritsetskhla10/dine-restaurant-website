@@ -6,7 +6,6 @@ import '../index.css';
 
 const Form: React.FC = () => {
 
-  // ინფუთის მნიშვნელობებისთვის მაქვს შესაცვლელი ლოგიკა. თუ რეალთაიმ მნიშვნელობა ცარიელია ეგ გამოაჩინოს
 
   const [formData, setFormData] = useState({
     name: "",
@@ -19,8 +18,11 @@ const Form: React.FC = () => {
   const [errors, setErrors] = useState({
     name: "",
     email: "",
-    date: "",
-    time: "",
+    month: '',
+    day: '',
+    year: '',
+    hour: '',
+    minute: '',
   });
 
   const [valueDate, setValueDate] = useState({
@@ -94,56 +96,58 @@ const Form: React.FC = () => {
     }));
   };
 
-  const validateTime = (hour: string, minute: string, period: string): boolean => {
-    const formattedHour = padWithZero(hour);
-    const formattedMinute = padWithZero(minute);
+  const validateTimePart = (value: string, type: "hour" | "minute"): boolean => {
+    const number = parseInt(value, 10);
   
-    const validHour = /^0[1-9]|1[0-2]$/.test(formattedHour); 
-    const validMinute = /^[0-5][0-9]$/.test(formattedMinute); 
-    const validPeriod = period === "AM" || period === "PM"; 
+    if (type === "hour") {
+      return number >= 1 && number <= 12; 
+    }
   
-    return validHour && validMinute && validPeriod;
+    if (type === "minute") {
+      return number >= 0 && number <= 59; 
+    }
+  
+    return false;
   };
 
-  const validateDate = (month: string, day: string, year: string): boolean => {
+  const validateDatePart = (value: string, type: "month" | "day" | "year"): boolean => {
     const currentYear = new Date().getFullYear();
   
-    const padWithZero = (value: string): string => value.padStart(2, "0");
-    const formattedMonth = padWithZero(month);
-    const formattedDay = padWithZero(day);
+    if (type === "month") {
+      const month = parseInt(value, 10);
+      return month >= 1 && month <= 12;
+    }
   
-    const validMonth = /^0[1-9]|1[0-2]$/.test(formattedMonth);
-    const validDay = /^[0-3][0-9]$/.test(formattedDay); 
-    const validYear = /^\d{4}$/.test(year) && parseInt(year) >= currentYear;
+    if (type === "day") {
+      const day = parseInt(value, 10);
+      return day >= 1 && day <= 31; 
+    }
   
-    if (!validMonth || !validDay || !validYear) return false;
-
-    const date = new Date(`${year}-${formattedMonth}-${formattedDay}`);
-    return (
-      date.getFullYear() === parseInt(year) &&
-      date.getMonth() + 1 === parseInt(formattedMonth) && 
-      date.getDate() === parseInt(formattedDay)
-    );
+    if (type === "year") {
+      const year = parseInt(value, 10);
+      return year >= currentYear; 
+    }
+  
+    return false;
   };
 
 
 
   const validateForm = (): boolean => {
-    const [month = "", day = "", year = ""] = formData.date.split("/");
-    const [hour = "", minute = "", period = "AM"] = formData.time.split(/[: ]/);
+    const { month, day, year, hour, minute } = valueDate;
   
-    console.log(formData.time.split(/[: ]/))
-    console.log(formData.date.split(/[: ]/))
-
     const newErrors = {
       name: formData.name ? "" : "Name is required.",
       email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? "" : "Invalid email format.",
-      date: validateDate(month, day, year) ? "" : "Invalid date format.",
-      time: validateTime(hour, minute, period) ? "" : "Invalid time format.",
+      month: validateDatePart(month, "month") ? "" : "Invalid date.",
+      day: validateDatePart(day, "day") ? "" : "Invalid date.",
+      year: validateDatePart(year, "year") ? "" : "Invalid date.",
+      hour: validateTimePart(hour, "hour") ? "" : "Invalid time.",
+      minute: validateTimePart(minute, "minute") ? "" : "Invalid time.",
     };
   
     setErrors(newErrors);
-    console.log(newErrors)
+  
     return !Object.values(newErrors).some((error) => error !== "");
   };
 
@@ -153,12 +157,12 @@ const Form: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log(errors)
     if (!validateForm()) return;
 
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const userID = "YOUR_USER_ID";
+    const serviceID = "service_g25a2dd";
+    const templateID = "template_p1sto8c";
+    const userID = "WzfoXw6icAoeCDBQn";
 
     emailjs
       .send(serviceID, templateID, formData, userID)
@@ -181,40 +185,48 @@ const Form: React.FC = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
           {/* Name Field */}
           <div className="form-group flex flex-col gap-3">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              required
-              className="w-full px-[14px] py-[14px] text-[20px] font-normal text-[#111111] leading-[1.4] border-b-[1px] border-b-[#8e8e8e] focus:outline-none placeholder:opacity-50 focus:border-b-[#111]"
-            />
-            {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            required
+            className={`w-full px-[14px] py-[14px] text-[20px] font-normal leading-[1.4] border-b-[1px] ${
+              errors.name ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111111]'
+            } focus:outline-none placeholder:opacity-50 focus:border-b-[#111]`}
+          />
+          {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
           </div>
 
           {/* Email Field */}
           <div className="form-group flex flex-col gap-3">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              required
-              className="w-full px-[14px] py-[14px] text-[20px] font-normal text-[#111111] leading-[1.4] border-b-[1px] border-b-[#8e8e8e] focus:outline-none placeholder:opacity-50 focus:border-b-[#111]"
-            />
-            {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            required
+            className={`w-full px-[14px] py-[14px] text-[20px] font-normal leading-[1.4] border-b-[1px] ${
+              errors.email ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111111]'
+            } focus:outline-none placeholder:opacity-50 focus:border-b-[#111]`}
+          />
+          {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
           </div>
 
           {/* Date Picker */}
           <div className="flex justify-between items-center">
+            <div className='flex flex-col gap-2'>
             <label htmlFor="date" className="block text-sm font-medium text-gray-700">
               Pick a Date
             </label>
-            {errors.date && <span className="text-red-500 text-sm">{errors.date}</span>}
+            {errors.month || errors.day || errors.year ? (
+            <p className="text-red-500 text-sm">{errors.month || errors.day || errors.year}</p>
+          ) : null}
+            </div>
             <div className="flex gap-4">
             <InputMask
               placeholder="MM"
@@ -222,7 +234,9 @@ const Form: React.FC = () => {
               value={valueDate.month}
               onChange={(e) => handleMonthChange(e.target.value)}
               maskChar={null}
-              className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
+              className={`max-w-20 border-b-[1px] ${
+                errors.month ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111]'
+              } pl-4 pb-3 focus:outline-none`}
             />
             <InputMask
               placeholder="DD"
@@ -230,7 +244,9 @@ const Form: React.FC = () => {
               value={valueDate.day}
               onChange={(e) => handleDayChange(e.target.value)}
               maskChar={null}
-              className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
+              className={`max-w-20 border-b-[1px] ${
+                errors.day ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111]'
+              } pl-4 pb-3 focus:outline-none`}
             />
             <InputMask
               placeholder="YYYY"
@@ -238,17 +254,23 @@ const Form: React.FC = () => {
               value={valueDate.year}
               onChange={(e) => handleYearChange( e.target.value)}
               maskChar={null}
-              className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
+              className={`max-w-20 border-b-[1px] ${
+                errors.year ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111]'
+              } pl-4 pb-3 focus:outline-none`}
             />
             </div>
           </div>
 
           {/* Time Picker */}
           <div className="flex justify-between items-center">
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700">
-              Pick a Time
-            </label>
-            {errors.time && <span className="text-red-500 text-sm">{errors.time}</span>}
+            <div className='flex flex-col gap-2'>
+              <label htmlFor="time" className="block text-sm font-medium text-gray-700">
+                Pick a Time
+              </label>
+              {errors.hour || errors.minute ? (
+              <p className="text-red-500 text-sm">{errors.hour || errors.minute}</p>
+            ) : null}
+            </div>
             <div className="flex gap-4">
             <InputMask
               placeholder="HH"
@@ -256,7 +278,9 @@ const Form: React.FC = () => {
               value={valueDate.hour}
               onChange={(e) => handleHourChange(e.target.value)}
               maskChar={null}
-              className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
+              className={`max-w-20 border-b-[1px] ${
+                errors.hour ? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111]'
+              } pl-4 pb-3 focus:outline-none`}
             />
             <InputMask
               placeholder="MM"
@@ -264,7 +288,9 @@ const Form: React.FC = () => {
               value={valueDate.minute}
               onChange={(e) => handleMinuteChange(e.target.value)}
               maskChar={null}
-              className="max-w-20 border-b-[1px] border-b-[#8e8e8e] pl-4 pb-3 focus:outline-none"
+              className={`max-w-20 border-b-[1px] ${
+                errors.minute? 'border-b-red-500 text-red-500' : 'border-b-[#8e8e8e] text-[#111]'
+              } pl-4 pb-3 focus:outline-none`}
             />
             <Select
               defaultValue="AM"
