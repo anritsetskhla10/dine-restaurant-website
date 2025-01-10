@@ -11,8 +11,9 @@ function Footer() {
         leading-[2] tracking-[2px] text-[#ffffff]'>Marthwaite, Sedbergh</p>
         <p className='text-[14px] font-normal
         leading-[2] tracking-[2px] text-[#ffffff]'>Cumbria</p>
-        <p className='text-[14px] font-normal
-        leading-[2] tracking-[2px] text-[#ffffff]'>+00 44 123 4567</p>
+        <a  href="tel:+995598348189"
+        className='text-[14px] font-normal
+        leading-[2] tracking-[2px] text-[#ffffff]'>+00 44 123 4567</a>
       </div>
       <div>
         <p className='text-[14px] font-normal
